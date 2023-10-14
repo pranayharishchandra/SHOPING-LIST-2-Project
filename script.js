@@ -31,6 +31,7 @@ function addItem(e) {
     console.log('list item added successfully')
 }
 
+
 // or you can do the long way
 function createListItem(item_name) {
     const newListItem = document.createElement('li');
@@ -48,8 +49,30 @@ function createListItem(item_name) {
     return newListItem;
 }
 
+function removeItem(e) {
+    // i have to remove the li
+    // when i only click the icon in it
+    console.log(e.target)
+    // e.target can be anytihing in the ul
+    const targetClicked = e.target
+    
+    // checking if the clicked element is the icon
+    // or something else element like ul or li
+    if (targetClicked.classList.contains('fa-xmark')) {
+        // remove the ul
+        const removeListItem = targetClicked.closest('li')
+        if (removeListItem) {
+            removeListItem.remove()
+        }
+    }
+
+}
+
+
+
 
 // event lisners
 itemForm.addEventListener('submit',  addItem)
+itemList.addEventListener('click', removeItem)
 
   
