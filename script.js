@@ -1,11 +1,55 @@
  const itemForm  =  document.getElementById('item-form')
  const itemInput =  document.getElementById('item-input')
- const itemList  = document.getElementById('item-list')
+ const itemList  =  document.getElementById('item-list')
 
-function addItem() {
-    
+function addItem(e) {
+    e.preventDefault();
+
+    // validate input
+    if (itemInput.value === '') {
+        alert('please add an item')
+        return;
+    }
+
+    // creating the list-item 
+    const newListItem = document.createElement('li');
+    // container.id = 'item-list';
+    // container.className = 'container'; 
+    newListItem.innerHTML = `
+        ${itemInput.value}
+        <button class="remove-item btn-link text-red">
+        <i class="fa-solid fa-xmark"></i>
+        </button>
+    `; 
+
+    // adding the list-item into list 
+    itemList.appendChild(newListItem); 
+
+
+    // const list_item = createListItem(itemInput.value)
+    // itemList.appendChild(list_item)
+    console.log('list item added successfully')
 }
 
+// or you can do the long way
+function createListItem(item_name) {
+    const newListItem = document.createElement('li');
+    const item_name_node = document.createTextNode(item_name);
+    newListItem.appendChild(item_name_node);
+
+    const newButton = document.createElement('button');
+    newButton.className = "remove-item btn-link text-red";
+
+    const newIcon = document.createElement('i');
+    newIcon.className = "fa-solid fa-xmark";
+
+    newButton.appendChild(newIcon);
+    newListItem.appendChild(newButton);
+    return newListItem;
+}
+
+
+// event lisners
 itemForm.addEventListener('submit',  addItem)
 
- 
+  
