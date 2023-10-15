@@ -3,7 +3,7 @@ const itemInput  = document.getElementById('item-input')
 const itemList   = document.getElementById('item-list')
 const clearBtn   = document.getElementById('clear')
 const filter_con = document.getElementById('filter-container')
-
+const filter     = document.getElementById('filter')
 
 function addItem(e) {
     e.preventDefault();
@@ -91,10 +91,6 @@ function updateFunctionalityVisibility() {
     // counts number of buttons
     // const list_items = itemList.getElementsByClassName(remove-item)
     const list_items = itemList.getElementsByTagName('li')
-    const list_items2 = itemList.querySelectorAll('li')
-    // console.log(list_items)
-
-    console.log(list_items, list_items2)
 
     if (list_items.length === 0) {
         // hide the items
@@ -107,10 +103,27 @@ function updateFunctionalityVisibility() {
     }
 }
 
+function filterItems(){
+    // filter
+    // const filter_input = filter.value.toLowerCase
+    const filter_input = filter.value.toLowerCase()
+    const list_items = itemList.getElementsByTagName('li')
+
+    // iterating over all the list items and checking 
+    // if filter_input is their substring
+    // then keep that list item, o/w remove it
+    for (const item of list_items) {
+        const text = item.textContent.toLowerCase()
+        const visibility = text.includes(filter_input)
+        item.style.display = visibility ? 'block' : 'none'
+    }
+}
+
 
 // event lisners
 itemForm.addEventListener('submit', addItem)
 itemList.addEventListener('click' , removeItem)
 clearBtn.addEventListener('click' , clearAllItems)
+filter.addEventListener('input', filterItems)
 
 updateFunctionalityVisibility()
