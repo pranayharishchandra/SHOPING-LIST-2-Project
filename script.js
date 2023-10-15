@@ -1,6 +1,7 @@
- const itemForm  =  document.getElementById('item-form')
- const itemInput =  document.getElementById('item-input')
- const itemList  =  document.getElementById('item-list')
+ const itemForm  = document.getElementById('item-form')
+ const itemInput = document.getElementById('item-input')
+ const itemList  = document.getElementById('item-list')
+ const clearBtn  = document.getElementById('clear')
 
 function addItem(e) {
     e.preventDefault();
@@ -70,9 +71,23 @@ function removeItem(e) {
 
 
 
+function clearAllItems(e) {
+    // firstChild and parentNode can be used
+    while (itemList.firstChild) {
+        const firstchild = itemList.firstChild
+        // proformance wise use anything to remove
+        // there is no such difference
+        // itemList.removeChild(firstchild);
+        firstchild.remove() // using it cause consice
+    }
+}
+
+
+
 
 // event lisners
-itemForm.addEventListener('submit',  addItem)
-itemList.addEventListener('click', removeItem)
+itemForm.addEventListener('submit', addItem)
+itemList.addEventListener('click' , removeItem)
+clearBtn.addEventListener('click' , clearAllItems)
 
   
