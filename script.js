@@ -5,7 +5,6 @@ const clearBtn   = document.getElementById('clear')
 const filter_con = document.getElementById('filter-container')
 const filter     = document.getElementById('filter')
 
-
 function addItem(e) {
     e.preventDefault();
 
